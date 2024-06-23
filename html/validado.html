@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>COMEXANE</title>
+</head>
+<body onload="creaTimer()">
+    <div class="containerGlobal">
+        <img src="img/logo.svg"alt="" srcset="" class="logoTitulo">
+        <hr class="divisionRoja">
+        <div class="divCentrado">
+            <span class="textoTitulo">REGISTRO EXITOSO ASISTENTE:</span>
+            <span class="textoTitulo" id="nombre"></span>
+            <span class="textoTitulo2" style="font-size: 40px;">✅</span>
+        </div>
+        <hr class="divisionRoja">
+    </div>
+    <script>
+        function creaTimer(){
+            //lee variable nombre del query string
+            var urlParams = new URLSearchParams(window.location.search);
+            var nombre = urlParams.get('nombre');
+            document.getElementById("nombre").innerHTML = nombre;
+
+            var tiempo = 5;
+            var intervalo = setInterval(function(){
+                tiempo--;
+                if(tiempo == 0){
+                    clearInterval(intervalo);
+                    window.location.href = "index.html";
+                }
+            },1000);
+        }
+    </script>
+</body>
+</html>

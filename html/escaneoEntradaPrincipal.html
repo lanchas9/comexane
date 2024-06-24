@@ -15,9 +15,9 @@
                 const data = {
                     correoAdministrador : correoAdministrador
                 }
-                let urlLocal = 'http://localhost:4000/comexane/validaAdministradorConMail'
-                let urlServer = 'https://mosaico.app:4000/comexane/validaAdministradorConMail'
-                let url1 = urlLocal
+                let urlLocal1 = 'http://localhost:4000/comexane/validaAdministradorConMail'
+                let urlServer1 = 'https://mosaico.app:4000/comexane/validaAdministradorConMail'
+                let url1 = urlServer1
                 const response = await fetch(url1, {
                 method: 'POST',
                 headers: {
@@ -62,7 +62,7 @@
     <script>
         let urlLocal = "http://localhost:4000/comexane/"
         let urlServer = "https://mosaico.app:4000/comexane/"
-        let url = urlLocal
+        let url = urlServer
         let idQRparaEditar = ''
 
         let datosRelaciones

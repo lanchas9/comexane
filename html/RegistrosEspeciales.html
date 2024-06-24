@@ -285,7 +285,7 @@
                 try {
                     let urlLocal = `http://localhost:4000/comexane/guardaUsuario`
                     let urlServer = `https://mosaico.app:4000/comexane/guardaUsuario`
-                    let url = urlLocal
+                    let url = urlServer
                     const fetchResponse = await fetch(url, settings);
                     const data = await fetchResponse.json();
                     console.log("Data" + JSON.stringify(data))

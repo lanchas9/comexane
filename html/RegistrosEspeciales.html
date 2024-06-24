@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>COMEXANE</title>
+</head>
+<body onload="">
+    <div class="containerGlobal">
+        <img src="img/logo.svg"alt="" srcset="" class="logoTitulo">
+        <hr class="divisionRoja">
+        <div class="divCentrado">
+            <span class="textoTitulo">REGISTRO ASISTENTES</span>
+        </div>
+        <hr class="divisionRoja">
+        <div class="izquierda">
+            <div class="col-25">
+                <p class="textoSubtitulo">Nombre Completo:</p>
+            </div>
+            <div class="col-75">
+                <input type="text" class="inputDatos" id="nombreUsuario">
+            </div>
+            <div class="col-25">
+                <p class="textoSubtitulo">Correo Electrónico:</p>
+            </div>
+            <div class="col-75">
+                <input type="email" class="inputDatos" id="correoUsuario">
+            </div>
+            <div class="col-25">
+                <p class="textoSubtitulo">Tipo de Invitado:</p>
+            </div>
+            <div class="col-75">
+                <label for="categorias" class="textoSubtitulo" id="categorias"></label>
+            </div>
+            <div class="col-25">
+                <p class="textoSubtitulo">Es Profesor?</p>
+            </div>
+            <div class="col-75">
+                <label class="container textoSubtitulo">
+                    <input type="checkbox" id="esProfesor">
+                    <span class="checkmark grande"></span>
+                </label>
+            </div>
+            
+        </div>
+        <p class="mensajeError" id="mensajeError">
+            <!-- Prueba de mensaje de error -->
+        </p>
+        <div class="centrado">
+            <button class="boton textoSubtitulo" onclick="validaDatos()">Guardar</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        let agenda = []
+        let categorias = ["","Asistente", "Expositor", "Profesor", "Profesor Enfermería", "COMEXANE", "Ponente"]
+        let maxLargoString = 85
+        let listadoAgendaVisible
+        //crea un string con todas las letras del abecedario en mayusculas
+        let abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+
+      async function populateInput(){
+            let select = document.createElement("select")
+            select.setAttribute("id", "categoriaUsuario")
+            select.setAttribute("class", "inputDatos2")
+            document.getElementById("categorias").appendChild(select)
+            categorias.forEach(element => {
+                let option = document.createElement("option")
+                option.setAttribute("value", element)
+                option.innerHTML = element
+                document.getElementById("categoriaUsuario").appendChild(option)
+            });
+            agenda = await getAgenda()
+            // console.log({agenda})
+            //crea checkbox con los nombres de los eventos que estan en la variable agenda
+            //filtrar los eventos que son visibles
+            listadoAgendaVisible = agenda.message.filter(agenda => agenda.visibleEnAgenda == 1)
+            let grupoAnterior = -1
+            let backgroundColor = 0
+            listadoAgendaVisible.forEach(element => {
+                let checkbox = document.createElement("input")
+                checkbox.setAttribute("type", "checkbox")
+                checkbox.setAttribute("id", element.idAgenda)
+                checkbox.setAttribute("value", element.grupoAgenda)
+                // checkbox.setAttribute("grupo", element.grupoAgenda)
+                checkbox.setAttribute("class", "checkbox")
+                checkbox.addEventListener('change', (event) => {
+                    let idAgenda = parseInt(event.target.id)
+                    let grupoSeleccionado = parseInt(event.target.value)
+                    let checkboxes = document.getElementsByClassName("checkbox")
+                    for (let i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i].value == grupoSeleccionado && checkboxes[i].id != idAgenda) {
+                            if (checkboxes[i].checked) {
+                                checkboxes[i].checked = false
+                            }
+                        }
+                    }
+                });
+                let label = document.createElement("label")
+                label.setAttribute("for", element.idAgenda)
+                label.innerHTML = element.grupoAgenda + ": " + element.descripcionAgenda.substring(0,maxLargoString)
+                label.setAttribute("class", "container")
+                //br para separar los checkbox
+                let br = document.createElement("br")
+                let span = document.createElement("span")
+                span.className = "checkmark"
+                let grupo
+                if(grupoAnterior != element.grupoAgenda){
+                    grupo = document.createElement("div")
+                    grupo.setAttribute("id", "grupo"+element.grupoAgenda)
+                    if(backgroundColor == 0){
+                        grupo.className = "backgroundGris"
+                        backgroundColor = 1
+                    }else{
+                        grupo.className = "backgroundAzulClaro"
+                        backgroundColor = 0
+                    }
+                    grupoAnterior = element.grupoAgenda
+                    if(element.grupoAgenda > 1){
+                        grupo.appendChild(br)
+                    }
+                    grupo.appendChild(label)
+                    label.appendChild(checkbox)
+                    label.appendChild(span)
+                    document.getElementById("agenda").appendChild(grupo)
+                }else{
+                    grupo = document.getElementById("grupo"+element.grupoAgenda)
+                    grupo.appendChild(label)
+                    label.appendChild(checkbox)
+                    label.appendChild(span)
+                }
+            });
+        }
+
+        async function getAgenda(){
+            let resul = {
+                error : true,
+                message: "",
+                statusCode: 0
+            }
+            const settings = {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            };
+            try {
+                let urlServer = `https://mosaico.app:4000/comexane/getAgenda`
+                let urlLocal = `json/agenda.json`
+                let url = urlLocal
+                const fetchResponse = await fetch(url, settings);
+                const data = await fetchResponse.json();
+                // console.log("Data" + JSON.stringify(data))
+                
+                if(fetchResponse.status == 200){
+                    resul.statusCode = fetchResponse.status
+                    resul.message = data.message
+                    resul.error = false
+                }else{                        
+                    resul.statusCode = fetchResponse.status
+                    resul.message = data.message
+                    resul.error = true
+                }
+                
+            } catch (e) {
+                console.log("Error" + e)
+                resul.statusCode = 404
+                resul.message = e
+                return resul;
+            }
+            return resul    
+        }
+        function validaCheckboxes() {
+            //retorna los valores de los checkboxes seleccionados
+            let checkboxes = document.getElementsByClassName("checkbox")
+            let respuestas = []
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    respuestas.push(checkboxes[i].id)
+                }
+            }
+            return respuestas
+        }
+
+
+        async function validaDatos() {
+            //let respuestasCheckboxes = validaCheckboxes()
+            //recorre con un FOR el array listadoAgendaVisible
+            // Suponiendo que listadoAgendaVisible ya está definido y es un array
+            let grupoActual = -1
+            let contadorDelGrupoActual = 0
+            // let strRespuestasCheckboxes = respuestasCheckboxes.toString()
+            let strRespuestasCheckboxes = ""
+            // for (let j = 0; j < respuestasCheckboxes.length; j++) {
+            //     for (let i = 0; i < listadoAgendaVisible.length; i++) {
+            //         let grupoDelElemento = listadoAgendaVisible[i].grupoAgenda
+            //         if(grupoDelElemento != grupoActual){
+            //             grupoActual = grupoDelElemento
+            //             contadorDelGrupoActual = 0
+            //         }else{
+            //             contadorDelGrupoActual++
+            //         }
+            //         console.log("Grupo: " + grupoDelElemento + " - " + contadorDelGrupoActual)
+            //         if(listadoAgendaVisible[i].idAgenda == respuestasCheckboxes[j]){    
+            //             if(strRespuestasCheckboxes.length >= 1){
+            //                 strRespuestasCheckboxes += ","
+            //             }
+            //             strRespuestasCheckboxes += abecedario.charAt(contadorDelGrupoActual)
+            //             break;
+            //         }
+                
+            //         // if (elementoActual.idAgenda == respuestasCheckboxes[j]) {
+            //         //     console.log(elementoActual.descripcionAgenda)
+            //         // }
+            //     }
+            // }
+
+            document.getElementById("mensajeError").innerHTML = ""
+
+            let nombreUsuario = new String(document.getElementById("nombreUsuario").value);
+            let correoUsuario = new String(document.getElementById("correoUsuario").value);
+            let categoriaUsuario = new String(document.getElementById("categoriaUsuario").value);
+            let esProfesor = document.getElementById("esProfesor").checked
+            
+            let valido = true
+            let mensaje = ""
+
+            correoUsuario = correoUsuario.trim()
+            if(mailInValido(correoUsuario)){
+                valido = false
+                mensaje = "correo invalido"
+            }
+
+            if (nombreUsuario.length<= 5) {
+                valido = false
+                mensaje = "Nombre demasiado corto"
+            }
+
+            if (categoriaUsuario == "") {
+                valido = false
+                mensaje = "Seleccione un tipo de invitado"
+            }
+            
+            if(valido){
+                let resul = await guardaDatos(nombreUsuario, correoUsuario,categoriaUsuario,strRespuestasCheckboxes,esProfesor)
+                if (resul.statusCode ==200){
+                    let uriStringNombreUsuario = encodeURIComponent(nombreUsuario)
+                    window.location.href = `validado.html?nombre=${uriStringNombreUsuario}`;
+                }else{
+                    document.getElementById("mensajeError").innerHTML = resul.message
+                }
+            }else{
+                document.getElementById("mensajeError").innerHTML = mensaje
+            }
+        }
+        
+        async function guardaDatos(nombreUsuario, correoUsuario,categoriaUsuario,respuestasCheckboxes,esProfesor){
+            let resul = {
+                error : true,
+                message: "",
+                idUsuario: 0,
+                statusCode: 0
+            }
+            const data = {
+                    nombreUsuario : nombreUsuario,
+                    correoUsuario : correoUsuario,
+                    grupoUsuario : categoriaUsuario,
+                    esProfesorElUsuario : esProfesor,
+                    talleresUsuario : respuestasCheckboxes
+                }
+                const dataJson = JSON.stringify(data)
+
+                const settings = {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                 body: 
+                    dataJson
+                 };
+                try {
+                    let urlLocal = `http://localhost:4000/comexane/guardaUsuario`
+                    let urlServer = `https://mosaico.app:4000/comexane/guardaUsuario`
+                    let url = urlLocal
+                    const fetchResponse = await fetch(url, settings);
+                    const data = await fetchResponse.json();
+                    console.log("Data" + JSON.stringify(data))
+                    
+                    if(data.statusCode == 200){
+                        resul.statusCode = data.statusCode
+                        resul.idUsuario = data.message[0].idUsuario
+                        resul.message = data.message
+                    }else{                        
+                        resul.statusCode = data.statusCode
+                        resul.message = data.message
+                    }
+                    
+                } catch (e) {
+                    console.log("Error" + e)
+                    resul.statusCode = 404
+                    resul.message = e
+                    return resul;
+                }
+                return resul    
+        }
+
+        function mailInValido(correoUsuario) {
+            let esInValido = true
+
+           if  (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correoUsuario)) {
+                esInValido = false
+             } 
+            return esInValido
+        }
+        
+        function celularInValido(celularUsuario) {
+            let esInValido = true            
+            if( isNumeric(celularUsuario) && celularUsuario.length == 10 ){
+                esInValido = false
+            }
+            return esInValido
+        }
+
+        function isNumeric(str) {
+            if (typeof str != "string") return false // we only process strings!  
+            return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+                    !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+        }
+    </script>
+</body>
+</html>

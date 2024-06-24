@@ -10,6 +10,12 @@
             "request": "launch",
             "url": "http://localhost:5500/html/index.html",
             "webRoot": "${workspaceFolder}/"
+        },{
+            "name": "escaneoEtiquetas",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5500/html/escaneoEtiquetas.html",
+            "webRoot": "${workspaceFolder}/"
         },
     ]
 }

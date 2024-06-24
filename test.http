@@ -1,0 +1,16 @@
+@local = http://localhost:4000/
+@hostname = {{local}}
+
+### helloNode
+GET {{hostname}}
+Content-Type: application/json
+
+### reenvia Mail a usuario 
+POST {{hostname}}comexane/registroQR
+Content-Type: application/json
+
+{
+    "correoUsuario" : "emiliosanmiguel@icloud.com",
+    "metodoRegistro" : "RegistroQR",
+    "idAdministrador" : 1011
+}

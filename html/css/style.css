@@ -216,3 +216,13 @@ body{
     transform: rotate(45deg);
     /* background-color: red; */
   }
+  .imagen{
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width: 30%;
+}
+.qrPreviewVideo{
+  margin-left: 15%;
+  width: 70%;
+}

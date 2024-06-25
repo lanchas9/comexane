@@ -54,7 +54,7 @@
     </div>
     <script type="text/javascript">
         let agenda = []
-        let categorias = ["","Asistente", "Expositor", "Profesor", "Profesor Enfermería", "COMEXANE", "Ponente"]
+        let categorias = ["","Expositor", "Profesor", "Profesor Enfermería", "COMEXANE", "Ponente"]
         let maxLargoString = 85
         let listadoAgendaVisible
         //crea un string con todas las letras del abecedario en mayusculas
@@ -247,8 +247,17 @@
             if(valido){
                 let resul = await guardaDatos(nombreUsuario, correoUsuario,categoriaUsuario,strRespuestasCheckboxes,esProfesor)
                 if (resul.statusCode ==200){
+                    let nompreEmpresa = ""
+                    if(categoriaUsuario == "Expositor"){
+                        nompreEmpresa = resul.message[0].empresaExpositor
+                    }else{
+                        nompreEmpresa = categoriaUsuario
+                    }
                     let uriStringNombreUsuario = encodeURIComponent(nombreUsuario)
-                    window.location.href = `validado.html?nombre=${uriStringNombreUsuario}`;
+                    let uriStringCorreoUsuario = encodeURIComponent(correoUsuario)
+                    let uriStringEmpresaUsuario = encodeURIComponent(nompreEmpresa)
+                    let uriStringTipo = encodeURIComponent(categoriaUsuario)
+                    window.location.href = `validadoEspeciales.html?nombreUsuario=${uriStringNombreUsuario}$correoUsuario=${uriStringCorreoUsuario}&empresaUsuario=${uriStringEmpresaUsuario}&categoriaUsuario${uriStringTipo}`;
                 }else{
                     document.getElementById("mensajeError").innerHTML = resul.message
                 }

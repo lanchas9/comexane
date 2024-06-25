@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>COMEXANE</title>
+</head>
+<body onload="creaTimer()">
+    <div class="containerGlobal">
+        <img src="img/logo.svg"alt="" srcset="" class="logoTitulo">
+        <hr class="divisionRoja">
+        <div class="divCentrado">
+            <span class="textoTitulo">REGISTRO EXITOSO ASISTENTE:</span>
+            <span class="textoTitulo" id="nombre"></span>
+            <span class="textoTitulo2" style="font-size: 40px;">✅</span>
+        </div>
+        <hr class="divisionRoja">
+    </div>
+    <script>
+        async function creaTimer(){
+            //lee variable nombre del query string
+            var urlParams = new URLSearchParams(window.location.search);
+            var nombreUsuario = urlParams.get('nombreUsuario');
+            var correoUsuario = urlParams.get('correoUsuario');
+            var empresaUsuario = urlParams.get('empresaUsuario');
+            var tipo = urlParams.get('categoriaUsuario');
+            document.getElementById("nombre").innerHTML = nombre;
+            
+            let data2 = {
+                nombreUsuarioBody : nombreUsuario,
+                correoUsuarioBody :  correoUsuario,
+                empresaUsuarioBody : empresaUsuario,
+                categoriaUsuarioBody : categoriaUsuario
+            }
+            const dataJson2 = JSON.stringify(data2)
+            const settings2 = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: 
+                dataJson2
+            };
+            let urlLocalImpresoras = "http://localhost:3000/imprimeEtiquetaEspeciales"
+            
+            let datos2 = await fetch(urlLocalImpresoras,settings2)
+            let json2 = await datos2.json()
+            console.log({json2})
+            if (json2.statusCode == 200 ){ 
+                console.log("Etiqueta impresa")
+            }else{
+                console.log("Error al imprimir etiqueta")
+            }
+
+            window.location.href = "RegistrosEspeciales.html";
+        }
+    </script>
+</body>
+</html>

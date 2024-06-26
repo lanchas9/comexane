@@ -1,0 +1,454 @@
+{
+    "message": [
+        {
+            "idExpositor": 1,
+            "numStandExpositor": 101,
+            "empresaExpositor": "DOMIK UNIFORMES",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 2,
+            "numStandExpositor": 102,
+            "empresaExpositor": "BIOSSMANN",
+            "numMaximoGafetes": 12,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 3,
+            "numStandExpositor": 105,
+            "empresaExpositor": "UNICEF",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 4,
+            "numStandExpositor": 107,
+            "empresaExpositor": "FGL- FRANCISCO GARCIA LOPEZ",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 5,
+            "numStandExpositor": 108,
+            "empresaExpositor": "PISA",
+            "numMaximoGafetes": 12,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 6,
+            "numStandExpositor": 113,
+            "empresaExpositor": "DIEMEX",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 7,
+            "numStandExpositor": 114,
+            "empresaExpositor": "ECOGRAFIA CRITICA HEAD TO TOE",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 8,
+            "numStandExpositor": 116,
+            "empresaExpositor": "IABS",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 9,
+            "numStandExpositor": 117,
+            "empresaExpositor": "VIRYAMEDICA",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 10,
+            "numStandExpositor": 119,
+            "empresaExpositor": "EDITORA ALFIL",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 11,
+            "numStandExpositor": 120,
+            "empresaExpositor": "ARMTY",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 12,
+            "numStandExpositor": 124,
+            "empresaExpositor": "ZARPRA",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 13,
+            "numStandExpositor": 125,
+            "empresaExpositor": "REPELENTS",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 14,
+            "numStandExpositor": 202,
+            "empresaExpositor": "ASOKAM",
+            "numMaximoGafetes": 12,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 15,
+            "numStandExpositor": 208,
+            "empresaExpositor": "SOLVENTUM",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 16,
+            "numStandExpositor": 210,
+            "empresaExpositor": "DRAGER MEDICAL MÉXICO",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 17,
+            "numStandExpositor": 217,
+            "empresaExpositor": "COMVALSA",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 18,
+            "numStandExpositor": 220,
+            "empresaExpositor": "SWISS MEDICAL",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 19,
+            "numStandExpositor": 224,
+            "empresaExpositor": "SMNA",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 20,
+            "numStandExpositor": 225,
+            "empresaExpositor": "SOMAT / AMETD / SMAP",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 21,
+            "numStandExpositor": 226,
+            "empresaExpositor": "JOYERIA AZUL Y PLATA",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 22,
+            "numStandExpositor": 302,
+            "empresaExpositor": "LAERDAL",
+            "numMaximoGafetes": 12,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 23,
+            "numStandExpositor": 308,
+            "empresaExpositor": "ALVARTIS PHARMA",
+            "numMaximoGafetes": 12,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 24,
+            "numStandExpositor": 314,
+            "empresaExpositor": "MEDICAGAMA",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 25,
+            "numStandExpositor": 316,
+            "empresaExpositor": "SERTEC MEDICAL",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 26,
+            "numStandExpositor": 320,
+            "empresaExpositor": "LABORATORIOS SILANES",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 27,
+            "numStandExpositor": 321,
+            "empresaExpositor": "OCTAPHARMA",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 28,
+            "numStandExpositor": 324,
+            "empresaExpositor": "MEDUAIRWAY",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 29,
+            "numStandExpositor": 325,
+            "empresaExpositor": "SMAGO / SMACT",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 30,
+            "numStandExpositor": 402,
+            "empresaExpositor": "REVISTA MEXICANA DE ANESTESIOLOGÍA",
+            "numMaximoGafetes": 12,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 31,
+            "numStandExpositor": 405,
+            "empresaExpositor": "CONSEJO NACIONAL DE CERTIFICACIÓN EN ANESTESIOLOGÍA",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 32,
+            "numStandExpositor": 408,
+            "empresaExpositor": "PIYAMEDIC",
+            "numMaximoGafetes": 12,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 33,
+            "numStandExpositor": 414,
+            "empresaExpositor": "MINDRAY MÉXICO",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 34,
+            "numStandExpositor": 416,
+            "empresaExpositor": "MENARINI",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 35,
+            "numStandExpositor": 417,
+            "empresaExpositor": "COMERCIALIZADORA LEO",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 36,
+            "numStandExpositor": 420,
+            "empresaExpositor": "MEDTRONIC",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 37,
+            "numStandExpositor": 421,
+            "empresaExpositor": "MEDICAL VIKINGS",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 38,
+            "numStandExpositor": 424,
+            "empresaExpositor": "DEFSA",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 39,
+            "numStandExpositor": 425,
+            "empresaExpositor": "ELSEVIER",
+            "numMaximoGafetes": 2,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 40,
+            "numStandExpositor": 506,
+            "empresaExpositor": "FEDERACIÓN MEXICANA DE COLEGIOS DE ANESTESIOLOGÍA",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 41,
+            "numStandExpositor": 508,
+            "empresaExpositor": "SOLIDFARMA",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 42,
+            "numStandExpositor": 521,
+            "empresaExpositor": "EUROFARMA",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 43,
+            "numStandExpositor": 522,
+            "empresaExpositor": "AGEFINSA",
+            "numMaximoGafetes": 6,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 44,
+            "numStandExpositor": 525,
+            "empresaExpositor": "GOBA",
+            "numMaximoGafetes": 3,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        },
+        {
+            "idExpositor": 45,
+            "numStandExpositor": 999,
+            "empresaExpositor": "EVENT MAKERS",
+            "numMaximoGafetes": 99,
+            "numGafetesImpresos": 0,
+            "createdAt": "6/22/24 18:20",
+            "modifiedAt": "6/22/24 18:20",
+            "esActivo": 1
+        }
+    ]
+}

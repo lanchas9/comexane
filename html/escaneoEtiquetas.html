@@ -74,7 +74,7 @@
                 event.preventDefault();
                 let paste = (event.clipboardData.getData('text/plain'));
                 if(paste.includes("@")){
-                    tenemosQR(paste)
+                    tenemosQR(paste.trim())
                     index = 0
                 }else{
                     index = 0
@@ -115,7 +115,7 @@
                             let data2 = {
                                 correoUsuarioBody : datosUsuario.correoUsuario,
                                 talleresUsuarioBody : datosUsuario.talleresUsuario,
-                                nombreEtiquetabody :  datosUsuario.nombreUsuario,
+                                nombreUsuarioBody :  datosUsuario.nombreUsuario,
                             }
                             const dataJson2 = JSON.stringify(data2)
                             const settings2 = {

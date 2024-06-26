@@ -16,6 +16,12 @@
             "request": "launch",
             "url": "http://localhost:5500/html/escaneoEtiquetas.html",
             "webRoot": "${workspaceFolder}/"
+        },{
+            "name": "RegistrosEspeciales",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5500/html/RegistrosEspeciales.html",
+            "webRoot": "${workspaceFolder}/"
         },
     ]
 }

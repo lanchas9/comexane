@@ -25,8 +25,8 @@
             var nombreUsuario = urlParams.get('nombreUsuario');
             var correoUsuario = urlParams.get('correoUsuario');
             var empresaUsuario = urlParams.get('empresaUsuario');
-            var tipo = urlParams.get('categoriaUsuario');
-            document.getElementById("nombre").innerHTML = nombre;
+            var categoriaUsuario = urlParams.get('categoriaUsuario');
+            document.getElementById("nombre").innerHTML = nombreUsuario;
             
             let data2 = {
                 nombreUsuarioBody : nombreUsuario,
@@ -54,7 +54,6 @@
             }else{
                 console.log("Error al imprimir etiqueta")
             }
-
             window.location.href = "RegistrosEspeciales.html";
         }
     </script>

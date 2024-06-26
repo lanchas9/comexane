@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>COMEXANE</title>
 </head>
-<body onload="">
+<body onload="populateInputs()">
     <div class="containerGlobal">
         <img src="img/logo.svg"alt="" srcset="" class="logoTitulo">
         <hr class="divisionRoja">
@@ -35,6 +35,12 @@
                 <label for="categorias" class="textoSubtitulo" id="categorias"></label>
             </div>
             <div class="col-25">
+                <p class="textoSubtitulo">Expositor:</p>
+            </div>
+            <div class="col-75">
+                <label for="categorias" class="textoSubtitulo" id="expositores"></label>
+            </div>
+            <div class="col-25">
                 <p class="textoSubtitulo">Es Profesor?</p>
             </div>
             <div class="col-75">
@@ -60,78 +66,52 @@
         //crea un string con todas las letras del abecedario en mayusculas
         let abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+        async function populateInputs(){
+            populateInputCateforias()
+        }
 
-      async function populateInput(){
+      async function populateInputCateforias(){
             let select = document.createElement("select")
             select.setAttribute("id", "categoriaUsuario")
             select.setAttribute("class", "inputDatos2")
             document.getElementById("categorias").appendChild(select)
+            document.getElementById("categoriaUsuario").addEventListener("change", checaSiSeleccionaronExpositor)
             categorias.forEach(element => {
                 let option = document.createElement("option")
                 option.setAttribute("value", element)
                 option.innerHTML = element
                 document.getElementById("categoriaUsuario").appendChild(option)
             });
-            agenda = await getAgenda()
-            // console.log({agenda})
-            //crea checkbox con los nombres de los eventos que estan en la variable agenda
-            //filtrar los eventos que son visibles
-            listadoAgendaVisible = agenda.message.filter(agenda => agenda.visibleEnAgenda == 1)
-            let grupoAnterior = -1
-            let backgroundColor = 0
-            listadoAgendaVisible.forEach(element => {
-                let checkbox = document.createElement("input")
-                checkbox.setAttribute("type", "checkbox")
-                checkbox.setAttribute("id", element.idAgenda)
-                checkbox.setAttribute("value", element.grupoAgenda)
-                // checkbox.setAttribute("grupo", element.grupoAgenda)
-                checkbox.setAttribute("class", "checkbox")
-                checkbox.addEventListener('change', (event) => {
-                    let idAgenda = parseInt(event.target.id)
-                    let grupoSeleccionado = parseInt(event.target.value)
-                    let checkboxes = document.getElementsByClassName("checkbox")
-                    for (let i = 0; i < checkboxes.length; i++) {
-                        if (checkboxes[i].value == grupoSeleccionado && checkboxes[i].id != idAgenda) {
-                            if (checkboxes[i].checked) {
-                                checkboxes[i].checked = false
-                            }
-                        }
-                    }
-                });
-                let label = document.createElement("label")
-                label.setAttribute("for", element.idAgenda)
-                label.innerHTML = element.grupoAgenda + ": " + element.descripcionAgenda.substring(0,maxLargoString)
-                label.setAttribute("class", "container")
-                //br para separar los checkbox
-                let br = document.createElement("br")
-                let span = document.createElement("span")
-                span.className = "checkmark"
-                let grupo
-                if(grupoAnterior != element.grupoAgenda){
-                    grupo = document.createElement("div")
-                    grupo.setAttribute("id", "grupo"+element.grupoAgenda)
-                    if(backgroundColor == 0){
-                        grupo.className = "backgroundGris"
-                        backgroundColor = 1
-                    }else{
-                        grupo.className = "backgroundAzulClaro"
-                        backgroundColor = 0
-                    }
-                    grupoAnterior = element.grupoAgenda
-                    if(element.grupoAgenda > 1){
-                        grupo.appendChild(br)
-                    }
-                    grupo.appendChild(label)
-                    label.appendChild(checkbox)
-                    label.appendChild(span)
-                    document.getElementById("agenda").appendChild(grupo)
-                }else{
-                    grupo = document.getElementById("grupo"+element.grupoAgenda)
-                    grupo.appendChild(label)
-                    label.appendChild(checkbox)
-                    label.appendChild(span)
+        }
+
+        function checaSiSeleccionaronExpositor(){
+            let categoriaSeleccionada = document.getElementById("categoriaUsuario").value
+            if(categoriaSeleccionada == "Expositor"){
+                populateInputExpositor()
+            }else{
+                let expositores = document.getElementById("expositores")
+                while (expositores.firstChild) {
+                    expositores.removeChild(expositores.firstChild);
                 }
-            });
+            }
+        }
+
+        async function populateInputExpositor(){
+            let select = document.createElement("select")
+            select.setAttribute("id", "expositorUsuario")
+            select.setAttribute("class", "inputDatos2")
+            document.getElementById("expositores").appendChild(select)
+            let resul = await fetch("json/expositores.json")
+            if(resul.status == 200){
+                data = await resul.json()
+                data.message.forEach(element => {
+                    let option = document.createElement("option")
+                    option.setAttribute("id", element.idExpositor)
+                    option.setAttribute("value", element.empresaExpositor)
+                    option.innerHTML = element.empresaExpositor
+                    document.getElementById("expositorUsuario").appendChild(option)
+                });
+            }
         }
 
         async function getAgenda(){
@@ -249,7 +229,7 @@
                 if (resul.statusCode ==200){
                     let nompreEmpresa = ""
                     if(categoriaUsuario == "Expositor"){
-                        nompreEmpresa = resul.message[0].empresaExpositor
+                        nompreEmpresa = document.getElementById("expositorUsuario").value
                     }else{
                         nompreEmpresa = categoriaUsuario
                     }
@@ -257,7 +237,7 @@
                     let uriStringCorreoUsuario = encodeURIComponent(correoUsuario)
                     let uriStringEmpresaUsuario = encodeURIComponent(nompreEmpresa)
                     let uriStringTipo = encodeURIComponent(categoriaUsuario)
-                    window.location.href = `validadoEspeciales.html?nombreUsuario=${uriStringNombreUsuario}$correoUsuario=${uriStringCorreoUsuario}&empresaUsuario=${uriStringEmpresaUsuario}&categoriaUsuario${uriStringTipo}`;
+                    window.location.href = `validadoEspeciales.html?nombreUsuario=${uriStringNombreUsuario}&correoUsuario=${uriStringCorreoUsuario}&empresaUsuario=${uriStringEmpresaUsuario}&categoriaUsuario=${uriStringTipo}`;
                 }else{
                     document.getElementById("mensajeError").innerHTML = resul.message
                 }

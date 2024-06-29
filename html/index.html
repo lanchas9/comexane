@@ -17,23 +17,24 @@
         <hr class="divisionRoja">
         <div class="izquierda">
             <div class="col-25">
+                <p class="textoSubtitulo">Correo Electrónico:</p>
+            </div>
+            <div class="col-75">
+                <input type="email" class="inputDatos" id="correoUsuario" onchange="buscaMail()">
+            </div>
+            <div class="col-25">
                 <p class="textoSubtitulo">Nombre Completo:</p>
             </div>
             <div class="col-75">
                 <input type="text" class="inputDatos" id="nombreUsuario">
             </div>
-            <div class="col-25">
-                <p class="textoSubtitulo">Correo Electrónico:</p>
-            </div>
-            <div class="col-75">
-                <input type="email" class="inputDatos" id="correoUsuario">
-            </div>
-            <div class="col-25">
+            
+            <!-- <div class="col-25">
                 <p class="textoSubtitulo">Tipo de Invitado:</p>
             </div>
             <div class="col-75">
                 <label for="categorias" class="textoSubtitulo" id="categorias"></label>
-            </div>
+            </div> -->
             <div class="col-25">
                 <p class="textoSubtitulo">Es Profesor?</p>
             </div>
@@ -59,23 +60,53 @@
     <script type="text/javascript">
         let agenda = []
         let categorias = ["","Asistente", "Profesor", "Profesor Enfermería", "COMEXANE", "Ponente"]
+        let tablaColores = ["","#11C6A4", "#C65911", "#66B0FF", "#AEAAAA", "#FFFF00", "#33CEFF", "#FF3399", "#33FF96", "#FFDD33"]
         let maxLargoString = 85
         let listadoAgendaVisible
         //crea un string con todas las letras del abecedario en mayusculas
         let abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let idQR = ""
+
+        async function buscaMail(){
+            let correoUsuario = document.getElementById("correoUsuario").value
+            let correoUsuarioTrim = correoUsuario.trim()
+            let url = `http://192.168.100.19:4000/comexane/existeUsuarioConCorreo?correoUsuario=${correoUsuarioTrim}`
+            const fetchResponse = await fetch(url);
+            const data = await fetchResponse.json();
+            if(fetchResponse.status == 200){
+                if(data.statusCode == 200){
+                    let nombreUsuario = data.message[0].nombreUsuario
+                    idQR = data.message[0].idQR
+                    document.getElementById("nombreUsuario").value = nombreUsuario
+                    document.getElementById("nombreUsuario").style.borderColor = "green"
+                    document.getElementById("nombreUsuario").style.borderWidth = "3px"
+                    if(data.message[0].esProfesorElUsuario){
+                        document.getElementById("esProfesor").checked = true
+                    }
+                }else{
+                    document.getElementById("nombreUsuario").value = ""
+                    document.getElementById("nombreUsuario").style.borderColor = "red"
+                    document.getElementById("nombreUsuario").style.borderWidth = "3px"
+                    document.getElementById("esProfesor").checked = false
+                }
+            }else{
+                document.getElementById("nombreUsuario").value = ""
+                document.getElementById("nombreUsuario").style.borderColor = "red"
+            }
+        }
 
 
       async function populateInput(){
-            let select = document.createElement("select")
-            select.setAttribute("id", "categoriaUsuario")
-            select.setAttribute("class", "inputDatos2")
-            document.getElementById("categorias").appendChild(select)
-            categorias.forEach(element => {
-                let option = document.createElement("option")
-                option.setAttribute("value", element)
-                option.innerHTML = element
-                document.getElementById("categoriaUsuario").appendChild(option)
-            });
+            // let select = document.createElement("select")
+            // select.setAttribute("id", "categoriaUsuario")
+            // select.setAttribute("class", "inputDatos2")
+            // document.getElementById("categorias").appendChild(select)
+            // // categorias.forEach(element => {
+            // //     let option = document.createElement("option")
+            // //     option.setAttribute("value", element)
+            // //     option.innerHTML = element
+            // //     document.getElementById("categoriaUsuario").appendChild(option)
+            // // });
             agenda = await getAgenda()
             // console.log({agenda})
             //crea checkbox con los nombres de los eventos que estan en la variable agenda
@@ -114,13 +145,14 @@
                 if(grupoAnterior != element.grupoAgenda){
                     grupo = document.createElement("div")
                     grupo.setAttribute("id", "grupo"+element.grupoAgenda)
-                    if(backgroundColor == 0){
-                        grupo.className = "backgroundGris"
-                        backgroundColor = 1
-                    }else{
-                        grupo.className = "backgroundAzulClaro"
-                        backgroundColor = 0
-                    }
+                    grupo.style.backgroundColor = tablaColores[element.grupoAgenda]
+                    // if(backgroundColor == 0){
+                    //     grupo.className = "backgroundGris"
+                    //     backgroundColor = 1
+                    // }else{
+                    //     grupo.className = "backgroundAzulClaro"
+                    //     backgroundColor = 0
+                    // }
                     grupoAnterior = element.grupoAgenda
                     if(element.grupoAgenda > 1){
                         grupo.appendChild(br)
@@ -136,6 +168,7 @@
                     label.appendChild(span)
                 }
             });
+            document.getElementById("correoUsuario").focus()
         }
 
         async function getAgenda(){
@@ -152,8 +185,8 @@
                 }
             };
             try {
-                let urlServer = `https://mosaico.app:4000/comexane/getAgenda`
-                let urlLocal = `json/agenda.json`
+                let urlServer = `https://mosaico.app:4000/comexane/getAgendaTalleres`
+                let urlLocal = `json/agendaTalleres.json`
                 let url = urlLocal
                 const fetchResponse = await fetch(url, settings);
                 const data = await fetchResponse.json();
@@ -177,6 +210,55 @@
             }
             return resul    
         }
+
+        // async function imprimeEtiquetaAsistente(){
+        //     let data = {
+        //         correoUsuarioBody : "emonroy@eventmakers.mx",
+        //         idQRBody : idQR,
+        //         talleresUsuarioBody : "A,B,C,D,E,A,A,A,I,A",
+        //         nombreUsuarioBody : "LUIS DIAZ PAZ",
+        //         tipoUsuarioBody : "Asistente"
+        //     }    
+        //     let resul = {
+        //         error : true,
+        //         message: "",
+        //         statusCode: 0
+        //     }
+        //     const settings = {
+        //         method: 'POST',
+        //         headers: {
+        //             Accept: 'application/json',
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(data)
+        //     };
+        //     try {
+        //         let urlServerLocal = `http://192.168.100.19:3000/imprimeEtiqueta`
+        //         // let urlLocal = `json/agendaTalleres.json`
+        //         let url = urlServerLocal
+        //         const fetchResponse = await fetch(url, settings);
+        //         const data = await fetchResponse.json();
+        //         // console.log("Data" + JSON.stringify(data))
+                
+        //         if(fetchResponse.status == 200){
+        //             resul.statusCode = fetchResponse.status
+        //             resul.message = data.message
+        //             resul.error = false
+        //         }else{                        
+        //             resul.statusCode = fetchResponse.status
+        //             resul.message = data.message
+        //             resul.error = true
+        //         }
+                
+        //     } catch (e) {
+        //         console.log("Error" + e)
+        //         resul.statusCode = 404
+        //         resul.message = e
+        //         return resul;
+        //     }
+        //     return resul    
+        // }
+
         function validaCheckboxes() {
             //retorna los valores de los checkboxes seleccionados
             let checkboxes = document.getElementsByClassName("checkbox")

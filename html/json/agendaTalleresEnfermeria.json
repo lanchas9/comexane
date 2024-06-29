@@ -1,0 +1,88 @@
+{
+    "message": [
+        {
+            "idAgenda": 1,
+            "diaAgenda": "7/6/24",
+            "horaInicioAgenda": "9:00",
+            "horaFinAgenda": "12:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 1,
+            "salonAgenda": "Tolteca 1",
+            "tituloAgenda": "Taller Enfermería",
+            "puntosAgenda": 0,
+            "descripcionAgenda": "USO Y MANEJO DE HEMOSTÁTICOS",
+            "largoAgenda": 28,
+            "aforo": 20
+        },
+        {
+            "idAgenda": 2,
+            "diaAgenda": "7/6/24",
+            "horaInicioAgenda": "9:00",
+            "horaFinAgenda": "12:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 2,
+            "salonAgenda": "Tolteca 1",
+            "tituloAgenda": "Taller Enfermería",
+            "puntosAgenda": 0,
+            "descripcionAgenda": "PROCESOS DE ESTERILIZACIÓN ",
+            "largoAgenda": 27,
+            "aforo": 20
+        },
+        {
+            "idAgenda": 3,
+            "diaAgenda": "7/6/24",
+            "horaInicioAgenda": "9:00",
+            "horaFinAgenda": "12:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 3,
+            "salonAgenda": "Tolteca 1",
+            "tituloAgenda": "Taller Enfermería",
+            "puntosAgenda": 0,
+            "descripcionAgenda": "ARTROPLASTÍA DE CADERA",
+            "largoAgenda": 22,
+            "aforo": 20
+        },
+        {
+            "idAgenda": 4,
+            "diaAgenda": "7/6/24",
+            "horaInicioAgenda": "9:00",
+            "horaFinAgenda": "12:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 4,
+            "salonAgenda": "Tolteca 1",
+            "tituloAgenda": "Taller Enfermería",
+            "puntosAgenda": 0,
+            "descripcionAgenda": "MANEJO DE LA VÍA AÉREA NO DIFÍCIL",
+            "largoAgenda": 33,
+            "aforo": 20
+        },
+        {
+            "idAgenda": 5,
+            "diaAgenda": "7/6/24",
+            "horaInicioAgenda": "9:00",
+            "horaFinAgenda": "12:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 5,
+            "salonAgenda": "Tolteca 1",
+            "tituloAgenda": "Taller Enfermería",
+            "puntosAgenda": 0,
+            "descripcionAgenda": "INTERPRETACIÓN DE GASOMETRÍAS EN PERSONAS ADULTAS",
+            "largoAgenda": 49,
+            "aforo": 20
+        },
+        {
+            "idAgenda": 6,
+            "diaAgenda": "7/6/24",
+            "horaInicioAgenda": "9:00",
+            "horaFinAgenda": "12:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 6,
+            "salonAgenda": "Tolteca 1",
+            "tituloAgenda": "Taller Enfermería",
+            "puntosAgenda": 0,
+            "descripcionAgenda": "MANEJO DEL BALÓN DE CONTRAPULSACIÓN",
+            "largoAgenda": 35,
+            "aforo": 20
+        }
+    ]
+}

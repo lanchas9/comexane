@@ -49,7 +49,7 @@
     
         fetchReportJSON()
         async function fetchReportJSON() {
-            let urlBD = 'http://192.168.100.19:4000/comexane/' + reporte
+            let urlBD = 'https://mosaico.app:4000/comexane/' + reporte
             let urlJSON = 'json/usuarios30jun.json'
             let url = urlJSON
             const response = await fetch(url);
@@ -336,7 +336,8 @@
                 return;                              
             }
             
-            let url1 = 'http://192.168.100.19:4000/comexane/guardaUsuario'
+            let url1 = 'https://mosaico.app
+            :4000/comexane/guardaUsuario'
             data.seAgregoMail = true
             fetch(url1, {
             method: 'POST',

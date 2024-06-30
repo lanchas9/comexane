@@ -56,7 +56,7 @@
                     tabledata.message.forEach(element => {
                     element.Reenviar = '📩'
                     element.Actualizar = '💾'
-                    element.Imprimir = '🖨️'
+                    // element.Imprimir = '🖨️'
                     element.codigoQR = '👁️'
                     // element.WhatsApp = '📲'
                     });
@@ -89,7 +89,7 @@
                             column.editor = true
                             column.width  = "25%"
                         }else{
-                            column.width  = "8%"
+                            column.width  = "10%"
                         }
                         if(columnasOcultas.some(r=>columnasOcultas.includes(column.title))){
                             column.visible = false
@@ -173,25 +173,41 @@
                         }
                     }else if (cell.getValue() == '📩'){
                         let correoUsuario = cell.getRow().getData().correoUsuario
-                        if (confirm('Confirmas el reenvío del correo para: ' + correoUsuario)) {
+                        if (correoUsuario == ""){
+                            alert('No se puede actualizar un usuario sin correo')
+                            return;
+                        }else{
+                            if (confirm('Confirmas el reenvío del correo para: ' + correoUsuario)) {
                             // Send it!
                                 reenviaMail(correoUsuario)
                             } else {
                             // Do nothing!
+                            }
                         }
                     }else if (cell.getValue() == '💾'){
                         let correoUsuario = cell.getRow().getData().correoUsuario
-                        if (confirm('Confirmas que quieres actualizar los datos de: ' + correoUsuario)) {
+                        if (correoUsuario == ""){
+                            alert('No se puede actualizar un usuario sin correo')
+                            return;
+                        }else{
+                            if (confirm('Confirmas que quieres actualizar los datos de: ' + correoUsuario)) {
                             // Send it!
                                 actualizaDB(cell.getRow().getData())
                                 console.log(cell.getRow().getData())
                             } else {
                             // Do nothing!
+                            }
                         }
                     }else if (cell.getValue() == '👁️'){
                         let idQR = cell.getRow().getData().idQR
                         let correoUsuario = cell.getRow().getData().correoUsuario
-                        muestraPopUp(idQR, correoUsuario)
+                        let talleresUsuario = "0,0,0,0,0,0,0,0,0"
+                        if(correoUsuario == ""){
+                            alert('No se puede mostrar el código QR de un usuario sin correo')
+                            return;                              
+                        }else{
+                            muestraPopUp(correoUsuario)
+                        }
                     }else if (cell.getValue() == '📲'){
                         let celularUsuario = cell.getRow().getData().celularUsuario
                         let nombreCompleto = cell.getRow().getData().nombreUsuario + ' ' + cell.getRow().getData().apellidoUsuario
@@ -278,7 +294,7 @@
             });
         }
     
-        function muestraPopUp(idQR, correoUsuario){
+        function muestraPopUp(correoUsuario){
             // Get the modal
             var modal = document.getElementById("myModal");
     
@@ -290,7 +306,8 @@
             modal.style.display = "block";
             // modalImg.src = 'https://mosaico.app:4000/file?path=qrcodesCOMEXANE/' + idQR + '.png';
             modalImg.textContent = ""
-            new QRCode(modalImg, idQR);
+            let textoDentroQR = correoUsuario
+            new QRCode(modalImg, textoDentroQR);
             captionText.innerHTML = correoUsuario;
             // }
     

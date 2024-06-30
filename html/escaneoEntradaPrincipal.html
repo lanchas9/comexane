@@ -179,9 +179,14 @@
 
         async function tenemosQR(entradaCodigoQR){
             let datosUsuario
-            let idQR = entradaCodigoQR.split(":::")[0]
+            let arrayDatosUsuario = entradaCodigoQR.split(":::")
+            let correoUsuario = arrayDatosUsuario[0]
+            let idQR = arrayDatosUsuario[1]
+            let talleresUsuario = arrayDatosUsuario[2]
             let data = {
                 "idQR" : idQR,
+                "correoUsuario" : correoUsuario,
+                "talleresUsuario" : talleresUsuario,
                 "metodoRegistro" : "Escaneo Entrada Principal",
                 "idAdministrador" : idAdministrador
             }

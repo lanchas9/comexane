@@ -66,6 +66,8 @@
         //crea un string con todas las letras del abecedario en mayusculas
         let abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         let idQR = ""
+        let idUsuario = 0
+        let maximoGrupo = 0
 
         async function buscaMail(){
             let correoUsuario = document.getElementById("correoUsuario").value
@@ -77,6 +79,7 @@
                 if(data.statusCode == 200){
                     let nombreUsuario = data.message[0].nombreUsuario
                     idQR = data.message[0].idQR
+                    idUsuario = data.message[0].idUsuario
                     document.getElementById("nombreUsuario").value = nombreUsuario
                     document.getElementById("nombreUsuario").style.borderColor = "green"
                     document.getElementById("nombreUsuario").style.borderWidth = "3px"
@@ -134,6 +137,7 @@
                     }
                 });
                 let label = document.createElement("label")
+                maximoGrupo = element.grupoAgenda
                 label.setAttribute("for", element.idAgenda)
                 label.innerHTML = element.grupoAgenda + ": " + element.descripcionAgenda.substring(0,maxLargoString)
                 label.setAttribute("class", "container")
@@ -279,7 +283,8 @@
             let grupoActual = -1
             let contadorDelGrupoActual = 0
             // let strRespuestasCheckboxes = respuestasCheckboxes.toString()
-            let strRespuestasCheckboxes = ""
+            let arrayRespuestasCheckboxes = new Array(maximoGrupo).fill("0");
+            
             for (let j = 0; j < respuestasCheckboxes.length; j++) {
                 for (let i = 0; i < listadoAgendaVisible.length; i++) {
                     let grupoDelElemento = listadoAgendaVisible[i].grupoAgenda
@@ -291,10 +296,11 @@
                     }
                     console.log("Grupo: " + grupoDelElemento + " - " + contadorDelGrupoActual)
                     if(listadoAgendaVisible[i].idAgenda == respuestasCheckboxes[j]){    
-                        if(strRespuestasCheckboxes.length >= 1){
-                            strRespuestasCheckboxes += ","
-                        }
-                        strRespuestasCheckboxes += abecedario.charAt(contadorDelGrupoActual)
+                        // if(strRespuestasCheckboxes.length >= 1){
+                        //     strRespuestasCheckboxes += ","
+                        // }
+                        //strRespuestasCheckboxes += abecedario.charAt(contadorDelGrupoActual)
+                        arrayRespuestasCheckboxes[grupoDelElemento-1] = abecedario.charAt(contadorDelGrupoActual)
                         break;
                     }
                 
@@ -303,12 +309,12 @@
                     // }
                 }
             }
-
+            strRespuestasCheckboxes = arrayRespuestasCheckboxes.toString()
             document.getElementById("mensajeError").innerHTML = ""
 
             let nombreUsuario = new String(document.getElementById("nombreUsuario").value);
             let correoUsuario = new String(document.getElementById("correoUsuario").value);
-            let categoriaUsuario = new String(document.getElementById("categoriaUsuario").value);
+            let categoriaUsuario = "ASISTENTE"
             let esProfesor = document.getElementById("esProfesor").checked
             
             let valido = true
@@ -331,7 +337,7 @@
             }
             
             if(valido){
-                let resul = await guardaDatos(nombreUsuario, correoUsuario,categoriaUsuario,strRespuestasCheckboxes,esProfesor)
+                let resul = await guardaDatos(nombreUsuario, correoUsuario,categoriaUsuario,strRespuestasCheckboxes,esProfesor,idUsuario)
                 if (resul.statusCode ==200){
                     let uriStringNombreUsuario = encodeURIComponent(nombreUsuario)
                     window.location.href = `validado.html?nombre=${uriStringNombreUsuario}`;
@@ -351,11 +357,13 @@
                 statusCode: 0
             }
             const data = {
+                    idUsuario : idUsuario,
                     nombreUsuario : nombreUsuario,
                     correoUsuario : correoUsuario,
                     grupoUsuario : categoriaUsuario,
                     esProfesorElUsuario : esProfesor,
-                    talleresUsuario : respuestasCheckboxes
+                    talleresUsuario : respuestasCheckboxes,
+                    seAgregoMail : false
                 }
                 const dataJson = JSON.stringify(data)
 
@@ -369,9 +377,14 @@
                     dataJson
                  };
                 try {
-                    let urlLocal = `http://localhost:4000/comexane/guardaUsuario`
-                    let urlServer = `https://mosaico.app:4000/comexane/guardaUsuario`
+                    let urlLocal = `http://localhost:4000/comexane/actualizaUsuario`
+                    let urlServer = `https://mosaico.app:4000/comexane/actualizaUsuario`
                     let url = urlServer
+                    if(idUsuario == 0){
+                        url = `https://mosaico.app:4000/comexane/guardaUsuario`
+                    }else{
+                        url = `https://mosaico.app:4000/comexane/actualizaUsuario`
+                    }
                     const fetchResponse = await fetch(url, settings);
                     const data = await fetchResponse.json();
                     console.log("Data" + JSON.stringify(data))

@@ -173,25 +173,40 @@
                         }
                     }else if (cell.getValue() == '📩'){
                         let correoUsuario = cell.getRow().getData().correoUsuario
+                        if(correoUsuario == ""){
+                            alert('No se puede reenviar un correo a un usuario sin correo')
+                            return;                              
+                        }
                         if (confirm('Confirmas el reenvío del correo para: ' + correoUsuario)) {
                             // Send it!
                                 reenviaMail(correoUsuario)
-                            } else {
+                        } else {
                             // Do nothing!
                         }
                     }else if (cell.getValue() == '💾'){
                         let correoUsuario = cell.getRow().getData().correoUsuario
-                        if (confirm('Confirmas que quieres actualizar los datos de: ' + correoUsuario)) {
+                        if(correoUsuario == ""){
+                            alert('No se puede actualizar un usuario sin correo')
+                            return;                              
+                        }else{
+                            if (confirm('Confirmas que quieres actualizar los datos de: ' + correoUsuario)) {
                             // Send it!
                                 actualizaDB(cell.getRow().getData())
                                 console.log(cell.getRow().getData())
                             } else {
                             // Do nothing!
+                            }
                         }
                     }else if (cell.getValue() == '👁️'){
                         let idQR = cell.getRow().getData().idQR
                         let correoUsuario = cell.getRow().getData().correoUsuario
-                        muestraPopUp(idQR, correoUsuario)
+                        let talleresUsuario = "0"
+                        if(correoUsuario == ""){
+                            alert('No se puede visualizar un código QR sin correo')
+                            return;                              
+                        }else{
+                            muestraPopUp(correoUsuario)
+                        }
                     }else if (cell.getValue() == '📲'){
                         let celularUsuario = cell.getRow().getData().celularUsuario
                         let nombreCompleto = cell.getRow().getData().nombreUsuario + ' ' + cell.getRow().getData().apellidoUsuario
@@ -278,7 +293,7 @@
             });
         }
     
-        function muestraPopUp(idQR, correoUsuario){
+        function muestraPopUp(correoUsuario){
             // Get the modal
             var modal = document.getElementById("myModal");
     
@@ -290,7 +305,8 @@
             modal.style.display = "block";
             // modalImg.src = 'https://mosaico.app:4000/file?path=qrcodesCOMEXANE/' + idQR + '.png';
             modalImg.textContent = ""
-            new QRCode(modalImg, idQR);
+            let textoParaQR = correoUsuario
+            new QRCode(modalImg, textoParaQR);
             captionText.innerHTML = correoUsuario;
             // }
     

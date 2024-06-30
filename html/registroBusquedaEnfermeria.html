@@ -49,7 +49,7 @@
     
         fetchReportJSON()
         async function fetchReportJSON() {
-            const response = await fetch('http://192.168.100.19:4000/comexane/' + reporte);
+            const response = await fetch('http://192.168.100.19:4000/comexane/' + "reporteUsuariosRegistradosTodosEnfermeria");
             const tabledata = await response.json();
             if (tabledata.statusCode == 200){
                 if((reporte == 'reporteUsuariosRegistrados') || (reporte == 'reporteUsuariosRegistradosTodos')){
@@ -118,6 +118,10 @@
                         let esProfesorElUsuario = data.esProfesorElUsuario
                         let str
                         let grupoUsuario = data.grupoUsuario
+                        if(correoUsuario == ""){
+                            alert('No se puede imprimir el gafete de un usuario sin correo')
+                            return;                              
+                        }
                         if(esProfesorElUsuario == 1){
                             str = 'Se imprime gafete del Profesor : ' + nombreUsuario
                             // categoriaUsuario = 'Profesor'

@@ -72,7 +72,7 @@
         async function buscaMail(){
             let correoUsuario = document.getElementById("correoUsuario").value
             let correoUsuarioTrim = correoUsuario.trim()
-            let url = `http://192.168.100.19:4000/comexane/existeUsuarioConCorreo?correoUsuario=${correoUsuarioTrim}`
+            let url = `http://mosaico.app:4000/comexane/existeUsuarioConCorreo?correoUsuario=${correoUsuarioTrim}`
             const fetchResponse = await fetch(url);
             const data = await fetchResponse.json();
             if(fetchResponse.status == 200){
@@ -377,7 +377,7 @@
                     dataJson
                  };
                 try {
-                    let urlLocal = `http://localhost:4000/comexane/actualizaUsuario`
+                    // let urlLocal = `http://localhost:4000/comexane/actualizaUsuario`
                     let urlServer = `https://mosaico.app:4000/comexane/actualizaUsuario`
                     let url = urlServer
                     if(idUsuario == 0){

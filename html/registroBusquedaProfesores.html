@@ -45,11 +45,11 @@
         const reporte = urlParams.get('reporte') 
         const element = document.getElementById("titulo");
         element.innerHTML = dameTitulo(reporte)
-        let urlLocalImpresoras = "http://localhost:3000/imprimeEtiquetaEspeciales"
+        let urlLocalImpresoras = "http://192.168.0.90:3000/imprimeEtiquetaEspeciales"
     
         fetchReportJSON()
         async function fetchReportJSON() {
-            const response = await fetch('http://192.168.100.19:4000/comexane/' + reporte);
+            const response = await fetch('http://192.168.0.90:4000/comexane/' + reporte);
             const tabledata = await response.json();
             if (tabledata.statusCode == 200){
                 if((reporte == 'reporteUsuariosRegistrados') || (reporte == 'reporteUsuariosRegistradosTodos')){
@@ -328,7 +328,7 @@
     
         function actualizaDB(correoUsuario){
             const data = correoUsuario
-            let url1 = 'http://192.168.100.19:4000/comexane/actualizaUsuario'
+            let url1 = 'http://192.168.0.90:4000/comexane/actualizaUsuario'
             data.seAgregoMail = true
             fetch(url1, {
             method: 'POST',

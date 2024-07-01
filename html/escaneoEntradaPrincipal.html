@@ -14,6 +14,7 @@
     <script>
         let idAdministrador
         async function compruebaUsuario(correoAdministrador){
+                loading()
                 const data = {
                     correoAdministrador : correoAdministrador
                 }
@@ -201,20 +202,20 @@
                 dataJson
         };
             try{ 
-                    let datos = await fetch(url + "guardaIngreso",settings) 
-                    let json = await datos.json()
-                    
-                    if (json.statusCode == 200 ){ 
-                            let temp = json.message
-                            datosUsuario = temp
-                            mostrarDetalle(datosUsuario)
-                    }else{
-                        let etiqueta = document.getElementById("nombreCompleto")
-                        etiqueta.innerHTML = json.message
+                let datos = await fetch(url + "guardaIngreso",settings) 
+                let json = await datos.json()
+                
+                if (json.statusCode == 200 ){ 
+                        let temp = json.message
+                        datosUsuario = temp
+                        mostrarDetalle(datosUsuario)
+                }else{
+                    let etiqueta = document.getElementById("nombreCompleto")
+                    etiqueta.innerHTML = json.message
 
-                        let icono = document.getElementById("iconoAcceso")
-                        icono.src = "img/rojo.png"
-                    }
+                    let icono = document.getElementById("iconoAcceso")
+                    icono.src = "img/rojo.png"
+                }
             }catch(error){
                 console.log({error})
             }
@@ -231,12 +232,15 @@
         }
 
         function loading(){
-            let etiqueta = document.getElementById("nombreCompleto")
-            etiqueta.innerHTML = ""
-
-            
             let icono = document.getElementById("iconoAcceso")
             icono.src = "img/loading.gif"
+        }
+
+        function ready(){
+            let etiqueta = document.getElementById("nombreCompleto")
+            etiqueta.innerHTML = ""
+            let icono = document.getElementById("iconoAcceso")
+            icono.src = "img/listo.png"
         }
         
         //funtion returning a promise with a video stream

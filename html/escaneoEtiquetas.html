@@ -24,8 +24,12 @@
         <br><br>
     </div>
     <script>
-        let urlServerBD = "https://mosaico.app:4000/comexane/registroQR"
-        let urlLocalImpresoras = "http://192.168.100.23:3000/imprimeEtiqueta"
+        let urlServerBDLocal = "http://localhost:4000/comexane/registroQR"
+        let urlServerBDServer = "https://mosaico.app:4000/comexane/registroQR"
+        
+        let urlServerBD = urlServerBDServer
+
+        let urlLocalImpresoras = "http://192.168.100.23:3000/imprimeEtiquetaEspeciales"
         
         let idQRparaEditar = ''
 
@@ -76,7 +80,8 @@
             document.addEventListener('paste', (event) => {
                 event.preventDefault();
                 let paste = (event.clipboardData.getData('text/plain'));
-                if(paste.includes("@")){
+                let len = paste.length
+                if(len == 36){
                     tenemosQR(paste.trim())
                     index = 0
                 }else{
@@ -115,10 +120,19 @@
                             let temp = json.message
                             datosUsuario = temp
                             mostrarDetalle(datosUsuario)
+                            let grupo = "Asistente"
+                            if(datosUsuario.esProfesorElUsuario == 1){
+                                grupo = "Profesor"
+                            }
+                            if(datosUsuario.grupoUsuario == "PROFESOR"){
+                                grupo = "Profesor"
+                            }
                             let data2 = {
-                                correoUsuarioBody : datosUsuario.correoUsuario,
-                                talleresUsuarioBody : datosUsuario.talleresUsuario,
                                 nombreUsuarioBody :  datosUsuario.nombreUsuario,
+                                correoUsuarioBody : datosUsuario.correoUsuario,
+                                empresaUsuarioBody : "",
+                                talleresUsuarioBody : datosUsuario.talleresUsuario,
+                                grupoUsuarioBody : grupo
                             }
                             const dataJson2 = JSON.stringify(data2)
                             const settings2 = {

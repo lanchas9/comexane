@@ -14,7 +14,6 @@
     <script>
         let idAdministrador
         async function compruebaUsuario(correoAdministrador){
-                loading()
                 const data = {
                     correoAdministrador : correoAdministrador
                 }
@@ -171,8 +170,9 @@
                 setTimeout(() => {
                     console.log("Tiempo sin leer códigos QR 2 seg");
                     ocupado = false
-                    loading()
+                    ready()
                 }, "2000")
+                loading()
                 tenemosQR(scannedText)
 
             }
@@ -237,8 +237,6 @@
         }
 
         function ready(){
-            let etiqueta = document.getElementById("nombreCompleto")
-            etiqueta.innerHTML = ""
             let icono = document.getElementById("iconoAcceso")
             icono.src = "img/listo.png"
         }

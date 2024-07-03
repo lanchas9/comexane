@@ -45,12 +45,12 @@
         const reporte = urlParams.get('reporte') 
         const element = document.getElementById("titulo");
         element.innerHTML = dameTitulo(reporte)
-        let urlLocalImpresoras = "http://localhost:3000/imprimeEtiquetaEspeciales"
+        let urlLocalImpresoras = "http://192.168.0.90:3000/imprimeEtiquetaEspeciales"
     
         fetchReportJSON()
         async function fetchReportJSON() {
             let urlBD = 'https://mosaico.app:4000/comexane/' + reporte
-            let urlJSON = 'json/usuarios30jun.json'
+            let urlJSON = 'json/comiteOrganizador.json'
             let url = urlJSON
             const response = await fetch(url);
             const tabledata = await response.json();
@@ -59,8 +59,8 @@
                     tabledata.message.forEach(element => {
                     // element.Reenviar = '📩'
                     element.Actualizar = '💾'
-                    // element.Imprimir = '🖨️'
-                    element.codigoQR = '👁️'
+                    element.Imprimir = '🖨️'
+                    // element.codigoQR = '👁️'
                     // element.WhatsApp = '📲'
                     });
                 }
@@ -86,13 +86,13 @@
                     column.headerFilter = true; // add header filter to every column
                     column.hozAlign="center"
                     if((reporte == 'reporteUsuariosRegistrados') || (reporte == 'reporteUsuariosRegistradosTodos')){
-                        let columnasEditables = ['correoUsuario', 'nombreUsuario','grupoUsuario']
+                        let columnasEditables = ['correoUsuario', 'nombreUsuario', 'grupoUsuario']
                         let columnasOcultas = ['esProfesorElUsuario', 'talleresUsuario','idQR', 'createdAt','esActivo']
                         if(columnasEditables.some(r=>columnasEditables.includes(column.title))){
                             column.editor = true
-                            column.width  = "40%"
+                            column.width  = "28%"
                         }else{
-                            column.width  = "10%"
+                            column.width  = "7%"
                         }
                         if(columnasOcultas.some(r=>columnasOcultas.includes(column.title))){
                             column.visible = false

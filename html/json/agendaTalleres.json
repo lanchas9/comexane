@@ -351,6 +351,48 @@
             "afoto": 80
         },
         {
+            "idAgenda": 39,
+            "diaAgenda": "2024-07-03",
+            "horaInicioAgenda": "15:00",
+            "horaFinAgenda": "20:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 4,
+            "salonAgenda": "Olmeca 1",
+            "tituloAgenda": "Taller Simulación",
+            "puntosAgenda": 10,
+            "descripcionAgenda": "Principios de seguridad del paciente en Anestesiología",
+            "largoAgenda": 47,
+            "afoto": 50
+        },
+        {
+            "idAgenda": 40,
+            "diaAgenda": "2024-07-03",
+            "horaInicioAgenda": "15:00",
+            "horaFinAgenda": "20:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 4,
+            "salonAgenda": "Olmeca 1",
+            "tituloAgenda": "Taller Simulación",
+            "puntosAgenda": 10,
+            "descripcionAgenda": "Como dar malas noticias",
+            "largoAgenda": 47,
+            "afoto": 50
+        },
+        {
+            "idAgenda": 41,
+            "diaAgenda": "2024-07-03",
+            "horaInicioAgenda": "15:00",
+            "horaFinAgenda": "20:00",
+            "visibleEnAgenda": 1,
+            "grupoAgenda": 4,
+            "salonAgenda": "Olmeca 1",
+            "tituloAgenda": "Taller Simulación",
+            "puntosAgenda": 10,
+            "descripcionAgenda": "Escenario de gestión emocional",
+            "largoAgenda": 47,
+            "afoto": 50
+        },
+        {
             "idAgenda": 26,
             "diaAgenda": "7/4/24",
             "horaInicioAgenda": "8:00",

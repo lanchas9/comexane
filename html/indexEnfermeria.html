@@ -340,7 +340,7 @@
                 let resul = await guardaDatos(nombreUsuario, correoUsuario,categoriaUsuario,strRespuestasCheckboxes,esProfesor,idUsuario)
                 if (resul.statusCode ==200){
                     let uriStringNombreUsuario = encodeURIComponent(nombreUsuario)
-                    window.location.href = `validado.html?nombre=${uriStringNombreUsuario}`;
+                    window.location.href = `validadoEnfermeria.html?nombre=${uriStringNombreUsuario}`;
                 }else{
                     document.getElementById("mensajeError").innerHTML = resul.message
                 }
